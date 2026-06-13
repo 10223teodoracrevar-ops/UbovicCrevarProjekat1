@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dead by Daylight - Prodavnica Bundlova</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Chart.js biblioteka preko CDN za Ocenu 8 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">DbD Bundles</div>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="/about">O Igri / Projektu</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+                <li><a href="/admin">Admin panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Dostupni Dead by Daylight Paketi (Bundles)</h1>
+            <p>Pregled svih paketa iz baze sa akcijskim cenama. Redovi su obojeni na osnovu cene (Zeleno: do 10€, Žuto:
+                od 10€ do 20€, Crveno: preko 20€).</p>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Naziv Paketa</th>
+                            <th>Kategorija</th>
+                            <th>Akcijska Cena</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% bundlovi.forEach(bundle=> { %>
+                            <!-- Uslovno bojenje klasa (Kriterijum za Ocenu 7) -->
+                            <% let klasaBoje='' ; if(bundle.cena_eur <=10) { klasaBoje='row-cheap' ; } else
+                                if(bundle.cena_eur> 10 && bundle.cena_eur <= 20) { klasaBoje='row-medium' ; } else {
+                                    klasaBoje='row-expensive' ; } %>
+                                    <tr class="<%= klasaBoje %>">
+                                        <td>
+                                            <%= bundle.id %>
+                                        </td>
+                                        <td><strong>
+                                                <%= bundle.naziv_bundla %>
+                                            </strong></td>
+                                        <td>
+                                            <%= bundle.naziv_kategorije %>
+                                        </td>
+                                        <td>
+                                            <%= bundle.cena_eur %> €
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Sekcija sa Grafikonom za Ocenu 8 -->
+        <section class="dashboard-section">
+            <div class="chart-box">
+                <h2>Statistika prodaje po platformama</h2>
+                <p>Ovaj pie chart dinamički preuzima podatke o udelu gejming platformi direktno iz baze (Korisnici ->
+                    Prodaja).</p>
+                <div style="max-width: 400px; margin: 20px auto;">
+                    <canvas id="platformChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dead by Daylight Prodaja Bundlova - Node.js Projekat</p>
+    </footer>
+
+    <!-- Skripta koja generise grafik na osnovu podataka iz rute -->
+    <script>
+        // POPRAVKA: Dodati su apostrofi/navodnici i JSON.parse kako bi sve radilo bez greške
+        const siroviPodaci = '<%- JSON.stringify(grafikPodaci) %>';
+        const podaciIzBaze = siroviPodaci ? JSON.parse(siroviPodaci) : [];
+
+        // Mapiramo labele i vrednosti
+        const labele = podaciIzBaze.map(stavka => stavka.platforma);
+        const vrednosti = podaciIzBaze.map(stavka => stavka.broj_prodatih);
+
+        const ctx = document.getElementById('platformChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labele,
+                datasets: [{
+                    label: 'Broj prodatih paketa',
+                    data: vrednosti,
+                    backgroundColor: [
+                        '#ff4444', // Crvena za PC
+                        '#3498db', // Plava za PlayStation
+                        '#2ecc71', // Zelena za Xbox
+                        '#f1c40f'  // Zuta za Switch
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#1e1e1e'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
