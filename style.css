@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+header {
+    background-color: #1a1a1a;
+    border-bottom: 3px solid #ff4444;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4444;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff4444;
+}
+
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    border-left: 4px solid #ff4444;
+    padding-left: 10px;
+}
+
+/* Tabela stilovi */
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #2a2a2a;
+    color: #ff4444;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* Uslovno bojenje redova po kriterijumu za Ocenu 7 */
+.row-cheap {
+    background-color: rgba(46, 204, 113, 0.15) !important; /* Zelena za jeftine pakete */
+}
+
+.row-medium {
+    background-color: rgba(241, 196, 15, 0.1) !important;  /* Zuta za srednje pakete */
+}
+
+.row-expensive {
+    background-color: rgba(231, 76, 60, 0.15) !important;  /* Crvena za skupe/premium pakete */
+}
+
+/* Grafik sekcija */
+.dashboard-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.chart-box {
+    flex: 1;
+    min-width: 300px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Forma stilovi */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #bbb;
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus {
+    border-color: #ff4444;
+    outline: none;
+}
+
+button {
+    background-color: #ff4444;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #cc3333;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #2ece71;
+    color: #fff;
+}
+
+.alert-error {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+    background-color: #1a1a1a;
+    color: #666;
+    border-top: 1px solid #333;
+}
