@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">DbD Bundles - Admin</div>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="/about">O Igri / Projektu</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+                <li><a href="/admin">Admin panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Pregled pristiglih poruka iz baze</h1>
+        <p>Ova stranica je dostupna samo administratorima i vuče sve kontakt poruke upisane preko POST metode.</p>
+
+        <div class="table-container">
+            <% if (poruke.length === 0) { %>
+                <p style="color: #ff4444; font-size: 18px; margin-top: 20px;">Trenutno nema nijedne poruke u bazi.</p>
+            <% } else { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ime pošiljaoca</th>
+                            <th>Email</th>
+                            <th>Sadržaj Poruke</th>
+                            <th>Datum primanja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% poruke.forEach(poruka => { %>
+                            <tr>
+                                <td><%= poruka.id %></td>
+                                <td><strong><%= poruka.ime %></strong></td>
+                                <td><a href="mailto:<%= poruka.email %>" style="color:#ff4444;"><%= poruka.email %></a></td>
+                                <td><%= poruka.poruka %></td>
+                                <td><%= new Date(poruka.datum).toLocaleString('sr-RS') %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dead by Daylight Prodaja Bundlova - Node.js Projekat</p>
+    </footer>
+</body>
+</html>
