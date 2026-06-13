@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontaktirajte Nas</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">DbD Bundles</div>
+            <ul>
+                <li><a href="/">Početna</a></li>
+                <li><a href="/about">O Igri / Projektu</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+                <li><a href="/admin">Admin panel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="max-width: 600px;">
+        <h1>Kontaktirajte Podršku</h1>
+        <p style="margin-bottom: 20px;">Imate problem sa ključem bundla? Želite da predložite novi paket? Pošaljite nam poruku!</p>
+
+        <!-- Statusne poruke nakon slanja forme -->
+        <% if (poruka_status === 'success') { %>
+            <div class="alert alert-success">Uspešno! Vaša poruka je sačuvana u bazi podataka. Admin će je pregledati.</div>
+        <% } else if (poruka_status === 'error') { %>
+            <div class="alert alert-error">Došlo je do greške prilikom čuvanja podataka u bazi.</div>
+        <% } %>
+
+        <!-- POST Forma za Ocenu 9/10 -->
+        <form action="/kontakt" method="POST">
+            <div class="form-group">
+                <label for="ime">Vaše Ime:</label>
+                <input type="text" id="ime" name="ime" placeholder="Unesite Vaše ime..." required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail adresa:</label>
+                <input type="email" id="email" name="email" placeholder="primer@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="poruka">Vaša Poruka:</label>
+                <textarea id="poruka" name="poruka" rows="6" placeholder="Napišite tekst poruke ovde..." required></textarea>
+            </div>
+
+            <button type="submit">Pošalji Poruku</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dead by Daylight Prodaja Bundlova - Node.js Projekat</p>
+    </footer>
+</body>
+</html>
